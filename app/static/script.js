@@ -136,10 +136,14 @@ async function loadMetrics() {
     try {
         const res = await fetch("/metrics");
         const data = await res.json();
-
+        //section about
         document.getElementById("rocAuc").textContent = data.roc_auc.toFixed(3);
         document.getElementById("recall").textContent = Math.round(data.recall * 100) + "%";
         document.getElementById("accuracy").textContent = Math.round(data.accuracy * 100) + "%";
+        //section analytics
+        document.getElementById("rocAucMetric").textContent = data.roc_auc.toFixed(4);
+        document.getElementById("recallMetric").textContent = (data.recall * 100).toFixed(1) + "%";
+        document.getElementById("accuracyMetric").textContent = (data.accuracy * 100).toFixed(1) + "%";
 
     } catch (err) {
         console.error("Metrics load error:", err);
